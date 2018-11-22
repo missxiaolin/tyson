@@ -18,7 +18,7 @@
             </el-form-item>
 
             <el-form-item label="图片文件：" prop="file">
-                <el-input name="file" type="file" v-model="ruleForm.file"></el-input>
+                <input type="file" ref="imgFile" id="imgFile" @change="changeHandle">
             </el-form-item>
 
             <el-form-item label="x轴坐标：" prop="xAxis">
@@ -73,11 +73,10 @@ export default {
         farmName: '',
         farmLeader: '',
         farmAddress: '',
-        file: '',
         xAxis: '',
         yAxis: ''
-      }
-
+      },
+      file: ''
     }
   },
   created () {
@@ -115,6 +114,9 @@ export default {
         return false
       }
       Message(res.data.msg)
+    },
+    changeHandle (e) {
+      this.file = e.target.files[0]
     },
     // 重置
     resetForm (formName) {
