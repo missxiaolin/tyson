@@ -1,5 +1,5 @@
 <template>
 	<div class="dashboard-editor-container">
-    Tython
+    泰森后台
   </div>
 </template>

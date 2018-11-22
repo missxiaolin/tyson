@@ -1,18 +1,6 @@
 <template>
 	<div class="dashboard-editor-container">
-    <div class="clearfix">
-      <pan-thumb style="float: left" :image="avatar">
-        <span class="pan-info-roles">xiaolin</span>
-      </pan-thumb>
-      <github></github>
-      <div class="info-container">
-        <span class="display_name">小林</span>
-        <span style='font-size:20px;padding-top:20px;display:inline-block;'>admin</span>
-      </div>
-    </div>
-    <div>
-      <img class='emptyGif' src="http://oni42o7kl.bkt.clouddn.com/0e03b7da-db9e-4819-ba10-9016ddfdaed3">
-    </div>
+    
   </div>
 </template>
 
