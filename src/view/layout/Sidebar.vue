@@ -1,4 +1,5 @@
 <template>
+
     <el-menu background-color="#324157" text-color="#bfcbd9" mode="vertical" theme="dark" unique-opened :default-active="$route.path" :collapse="opened">
       <sidebar-item :routes='permission_routers'></sidebar-item>
     </el-menu>

@@ -6,7 +6,7 @@
     <screenfull class='screenfull'></screenfull>
     <el-dropdown class="avatar-container" trigger="click">
 			<div class="avatar-wrapper">
-				<img class="user-avatar" src="../../common/image/avatarImg.gif">
+				<img class="user-avatar" src="../../common/image/logo.png">
 				<i class="el-icon-caret-bottom"></i>
 			</div>
 			<el-dropdown-menu class="user-dropdown" slot="dropdown">
@@ -86,7 +86,7 @@ export default {
       position: relative;
       .user-avatar {
         width: 40px;
-        height: 40px;
+        // height: 40px;
         border-radius: 10px;
       }
       .el-icon-caret-bottom {
