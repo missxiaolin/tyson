@@ -1,5 +1,5 @@
 <template>
 	<div class="dashboard-editor-container">
-    简述
+    Tython
   </div>
 </template>

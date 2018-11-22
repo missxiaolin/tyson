@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-const _import = require('./_import_' + process.env.NODE_ENV)
-
-Vue.use(Router)
 
 /* layout */
 import layout from '@/view/layout/Layout'
+const _import = require('./_import_' + process.env.NODE_ENV)
+
+Vue.use(Router)
 
 export const asyncRouterMap = [
   {
@@ -59,17 +59,31 @@ export const asyncRouterMap = [
       }
     ]
   }, {
-    path: '/excel',
+    path: '/axm',
     component: layout,
-    redirect: '/excel/download',
-    name: 'excel',
-    icon: 'icon-Excel',
+    redirect: '/axm/list',
+    name: '信息管理',
+    icon: '',
     noDropdown: false,
     children: [
       {
-        path: 'download',
-        component: _import('excel/index'),
-        name: 'excel导出'
+        path: 'list',
+        component: _import('axm/list'),
+        name: '信息列表'
+      }
+    ]
+  }, {
+    path: '/walmart',
+    component: layout,
+    redirect: '/walmart/add',
+    name: '追溯管理',
+    icon: '',
+    noDropdown: false,
+    children: [
+      {
+        path: 'add',
+        component: _import('walmart/add'),
+        name: '沃尔玛管理'
       }
     ]
   }
