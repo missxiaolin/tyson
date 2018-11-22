@@ -42,7 +42,7 @@ export function editFarm (data) {
    */
 export function infoFarm (data) {
   return fetch({
-    url: `/manage/farm/queryFarmInfo`,
+    url: `/manage/farm/queryFarmInfo?id=${data.id}`,
     method: 'post',
     data: data
   })

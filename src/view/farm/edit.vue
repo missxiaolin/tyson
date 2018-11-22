@@ -121,7 +121,12 @@ export default {
       this.$refs[formName].resetFields()
     },
     infoFarm () {
-
+      let data = {
+        id: this.id
+      }
+      infoFarm(data).then(response => {
+        console.log(response)
+      })
     }
   }
 }
