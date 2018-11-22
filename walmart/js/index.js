@@ -30,15 +30,20 @@ $('#queryFactoryBySecurityCode').click(function () {
         console.log(d)
                 // alert('1');
         if (d != NaN && d != null && d.code == '0000') {
-          if (d.imageInspection == null) {
+          if (d.imageInspections == null) {
             alert('未找到对应的检测报告!')
           } else {
             alert('查询成功!')
+            var html = ''
+            for (var i = 0; i < d.imageInspections.length; i++) {
+              html += '<img src="' + d.imageInspections[0] + '" alt="" id="report">'
+            }
+            $('#c4rpImgList').html(html)
                         // 更换图片，检测报告每日可能有0、1、2张，在有0张的时候不显示，1张显示1张，2两张显示两张。
                         // get attribute value
-            var picSrc = $('report').attr('src')
+            // var picSrc = $('report').attr('src')
                         // set attribute value
-            $('#report').attr('src', 'http://30.105.203.57:8888' + d.imageInspection)
+            // $('#report').attr('src', 'http://30.105.203.57:8888' + d.imageInspection)
           }
         } else {
           alert('没有查到相关安心码!')
