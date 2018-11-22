@@ -38,7 +38,7 @@ $('#queryFactoryBySecurityCode').click(function () {
                         // get attribute value
             var picSrc = $('report').attr('src')
                         // set attribute value
-            $('#report').attr('src', d.imageInspection)
+            $('#report').attr('src', 'http://30.105.203.57:8888' + d.imageInspection)
           }
         } else {
           alert('没有查到相关安心码!')
