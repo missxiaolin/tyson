@@ -16,9 +16,9 @@ export function farmList (data) {
  * 添加
  * @param {*} data
  */
-export function addAxm (data) {
+export function addFarm (data) {
   return fetch({
-    url: `/manage/securityCode/addSecurityCode?securityCode=${data.securityCode}`,
+    url: `/applet/user/deposit/rule`,
     method: 'post',
     data: data
   })
@@ -28,9 +28,21 @@ export function addAxm (data) {
    * 修改
    * @param {*} data
    */
-export function editAxm (data) {
+export function editFarm (data) {
   return fetch({
-    url: `/manage/securityCode/modifySecurityCode?securityCode=${data.securityCode}&id=${data.id}`,
+    url: `/manage/farm/modifyFarm`,
+    method: 'post',
+    data: data
+  })
+}
+
+  /**
+   * 修改
+   * @param {*} data
+   */
+export function infoFarm (data) {
+  return fetch({
+    url: `/manage/farm/queryFarmInfo`,
     method: 'post',
     data: data
   })

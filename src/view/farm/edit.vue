@@ -18,7 +18,7 @@
             </el-form-item>
 
             <el-form-item label="图片文件：" prop="file">
-                <input type="file" ref="imgFile" id="imgFile" @change="changeHandle">
+                <el-input name="file" type="file" v-model="ruleForm.file"></el-input>
             </el-form-item>
 
             <el-form-item label="x轴坐标：" prop="xAxis">
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { addFarm } from '@/api/farm'
+import { editFarm, infoFarm } from '@/api/farm'
 import { ERR_OK } from '@/api/config'
 import { Message } from 'element-ui'
 
@@ -68,20 +68,23 @@ export default {
         }]
       },
       ruleForm: {
+        id: this.$route.params.id,
         farmCode: '',
         farmName: '',
         farmLeader: '',
         farmAddress: '',
+        file: '',
         xAxis: '',
         yAxis: ''
-
-      },
-      file: ''
+      }
 
     }
   },
+  created () {
+    this.infoFarm()
+  },
   methods: {
-      // 添加
+    // 修改
     onSubmit (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -95,13 +98,16 @@ export default {
     async add () {
       let fileForm = new FormData()
       fileForm.append('image', this.file)
+      fileForm.append('id', this.ruleForm.id)
       fileForm.append('farmCode', this.ruleForm.farmCode)
       fileForm.append('farmName', this.ruleForm.farmName)
       fileForm.append('farmLeader', this.ruleForm.farmLeader)
       fileForm.append('farmAddress', this.ruleForm.farmAddress)
       fileForm.append('xAxis', this.ruleForm.xAxis)
       fileForm.append('yAxis', this.ruleForm.yAxis)
-      let res = await addFarm(fileForm)
+
+      let res = await editFarm(fileForm)
+      console.log(res)
       if (res.data.code === ERR_OK) {
         this.$router.push({
           path: '/axm/farm/list'
@@ -110,12 +116,12 @@ export default {
       }
       Message(res.data.msg)
     },
-    changeHandle (e) {
-      this.file = e.target.files[0]
-    },
     // 重置
     resetForm (formName) {
       this.$refs[formName].resetFields()
+    },
+    infoFarm () {
+
     }
   }
 }

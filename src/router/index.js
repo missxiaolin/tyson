@@ -93,6 +93,12 @@ export const asyncRouterMap = [
         component: _import('farm/add'),
         name: '农场添加',
         hidden: true
+      },
+      {
+        path: 'farm/edit/:id',
+        component: _import('farm/edit'),
+        name: '农场修改',
+        hidden: true
       }
     ]
   }, {

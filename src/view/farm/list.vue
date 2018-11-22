@@ -44,7 +44,7 @@
 
           <el-table-column label="操作">
               <template slot-scope="scope">
-                  <el-button size="mini" @click="editAxm(scope.row.id,scope.row.securityCode)">编辑</el-button>
+                  <el-button size="mini" @click="editFarm(scope.row.id)">编辑</el-button>
                   <el-button size="mini" type="danger" @click="del(scope.row.id)">删除</el-button>
               </template>
           </el-table-column>
@@ -82,6 +82,7 @@ export default {
     this.getFarm()
   },
   methods: {
+    // 获取列表
     getFarm () {
       this.listLoading = true
       let data = {
@@ -91,7 +92,6 @@ export default {
       farmList(data).then(response => {
         let farmData = response.data
         if (farmData.code == ERR_OK) {
-          console.log(farmData)
           this.list = farmData.list
           this.listLoading = false
           this.total = parseInt(farmData.total)
@@ -103,17 +103,19 @@ export default {
         }
       })
     },
-
+    // 添加
     addFarm () {
       this.$router.push({
         path: `/axm/farm/add`
       })
     },
-    editAxm (id, code) {
+    // 修改
+    editFarm (id) {
       this.$router.push({
-        path: `/axm/edit/${id}/${code}`
+        path: `/axm/farm/edit/${id}`
       })
     },
+    // 删除
     del (id) {
       let data = {
         id: id
