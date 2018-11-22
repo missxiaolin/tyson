@@ -18,7 +18,7 @@ export function farmList (data) {
  */
 export function addFarm (data) {
   return fetch({
-    url: `/applet/user/deposit/rule`,
+    url: `/manage/farm/addFarm`,
     method: 'post',
     data: data
   })

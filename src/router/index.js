@@ -99,6 +99,23 @@ export const asyncRouterMap = [
         component: _import('farm/edit'),
         name: '农场修改',
         hidden: true
+      },
+      {
+        path: 'factory/list',
+        component: _import('factory/list'),
+        name: '工厂列表'
+      },
+      {
+        path: 'factory/add',
+        component: _import('factory/add'),
+        name: '工厂添加',
+        hidden: true
+      },
+      {
+        path: 'factory/edit/:id',
+        component: _import('factory/edit'),
+        name: '工厂更改',
+        hidden: true
       }
     ]
   }, {

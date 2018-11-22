@@ -101,6 +101,7 @@ export default {
       fileForm.append('farmAddress', this.ruleForm.farmAddress)
       fileForm.append('xAxis', this.ruleForm.xAxis)
       fileForm.append('yAxis', this.ruleForm.yAxis)
+      console.log(fileForm)
       let res = await addFarm(fileForm)
       if (res.data.code === ERR_OK) {
         this.$router.push({
