@@ -122,13 +122,16 @@ export default {
     resetForm (formName) {
       this.$refs[formName].resetFields()
     },
-    infoFarm () {
+    async infoFarm () {
       let data = {
         id: this.id
       }
-      infoFarm(data).then(response => {
-        console.log(response)
-      })
+      let res = await infoFarm(data)
+      console.log(res)
+      if (res.data.code === ERR_OK) {
+        return false
+      }
+      Message(res.data.msg)
     }
   }
 }
