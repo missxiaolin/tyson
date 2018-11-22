@@ -82,6 +82,17 @@ export const asyncRouterMap = [
         component: _import('axm/edit'),
         name: '信息更改',
         hidden: true
+      },
+      {
+        path: 'farm/list',
+        component: _import('farm/list'),
+        name: '农场列表'
+      },
+      {
+        path: 'farm/add',
+        component: _import('farm/add'),
+        name: '农场添加',
+        hidden: true
       }
     ]
   }, {
