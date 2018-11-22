@@ -1,5 +1,5 @@
 <template>
-	<div class="dashboard-editor-container">
+	<div class="app-container">
     <div class="ibox-title">
         <h3>信息列表</h3>
     </div>
@@ -42,7 +42,7 @@
 
           <el-table-column label="操作">
               <template slot-scope="scope">
-                  <el-button size="mini" @click="editAxm(scope.row.id)">编辑</el-button>
+                  <el-button size="mini" @click="editAxm(scope.row.id,scope.row.securityCode)">编辑</el-button>
                   <el-button size="mini" type="danger" @click="del(scope.row.id)">删除</el-button>
               </template>
           </el-table-column>
@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import { axmList } from '@/api/axm'
+import { axmList, delAxm } from '@/api/axm'
 import { ERR_OK } from '@/api/config'
 import { Message } from 'element-ui'
 
@@ -101,13 +101,27 @@ export default {
       })
     },
     addAxm () {
-
+      this.$router.push({
+        path: `/axm/add`
+      })
     },
-    editAxm (id) {
-
+    editAxm (id, code) {
+      this.$router.push({
+        path: `/axm/edit/${id}/${code}`
+      })
     },
     del (id) {
-
+      let data = {
+        id: id
+      }
+      delAxm(data).then(response => {
+        let axmData = response.data
+        if (axmData.code == ERR_OK) {
+          this.getAxm()
+        } else {
+          Message(axmData.msg)
+        }
+      })
     },
     handleCurrentChange (currentPage) {
       this.page = currentPage

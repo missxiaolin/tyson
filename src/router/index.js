@@ -70,6 +70,18 @@ export const asyncRouterMap = [
         path: 'list',
         component: _import('axm/list'),
         name: '信息列表'
+      },
+      {
+        path: 'add',
+        component: _import('axm/add'),
+        name: '信息添加',
+        hidden: true
+      },
+      {
+        path: 'edit/:id/:code',
+        component: _import('axm/edit'),
+        name: '信息更改',
+        hidden: true
       }
     ]
   }, {
