@@ -114,16 +114,22 @@ export default {
       })
     },
     del (id) {
-      let data = {
-        id: id
-      }
-      deleteFactory(data).then(response => {
-        let axmData = response.data
-        if (axmData.code === ERR_OK) {
-          this.getFactory()
-        } else {
-          Message(axmData.msg)
+      this.$confirm('此操作将永久删除角色, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        let data = {
+          id: id
         }
+        deleteFactory(data).then(response => {
+          let axmData = response.data
+          if (axmData.code === ERR_OK) {
+            this.getFactory()
+          } else {
+            Message(axmData.msg)
+          }
+        })
       })
     },
     handleCurrentChange (currentPage) {

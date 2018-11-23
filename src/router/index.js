@@ -46,24 +46,11 @@ export const asyncRouterMap = [
       }
     ]
   }, {
-    path: '/introduction',
-    component: layout,
-    redirect: '/introduction/index',
-    icon: 'icon-ren',
-    noDropdown: true,
-    children: [
-      {
-        path: 'index',
-        component: _import('introduction/index'),
-        name: '简述'
-      }
-    ]
-  }, {
     path: '/axm',
     component: layout,
     redirect: '/axm/list',
     name: '信息管理',
-    icon: '',
+    icon: 'icon-xinxi',
     noDropdown: false,
     children: [
       {
@@ -123,7 +110,7 @@ export const asyncRouterMap = [
     component: layout,
     redirect: '/walmart/add',
     name: '追溯管理',
-    icon: '',
+    icon: 'icon-icon-test',
     noDropdown: false,
     children: [
       {
