@@ -96,7 +96,7 @@ export default {
     },
     async add () {
       let fileForm = new FormData()
-      fileForm.append('image', this.file)
+      fileForm.append('file', this.file)
       fileForm.append('id', this.ruleForm.id)
       fileForm.append('farmCode', this.ruleForm.farmCode)
       fileForm.append('farmName', this.ruleForm.farmName)
@@ -124,11 +124,17 @@ export default {
     },
     async infoFarm () {
       let data = {
-        id: this.id
+        id: parseInt(this.ruleForm.id)
       }
       let res = await infoFarm(data)
-      console.log(res)
       if (res.data.code === ERR_OK) {
+        let response = res.data
+        this.ruleForm.farmCode = response.farmCode
+        this.ruleForm.farmAddress = response.farmAddress
+        this.ruleForm.farmLeader = response.farmLeader
+        this.ruleForm.farmName = response.farmName
+        this.ruleForm.xAxis = response.xAxis
+        this.ruleForm.yAxis = response.yAxis
         return false
       }
       Message(res.data.msg)

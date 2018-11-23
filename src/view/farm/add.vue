@@ -94,7 +94,7 @@ export default {
     },
     async add () {
       let fileForm = new FormData()
-      fileForm.append('image', this.file)
+      fileForm.append('file', this.file)
       fileForm.append('farmCode', this.ruleForm.farmCode)
       fileForm.append('farmName', this.ruleForm.farmName)
       fileForm.append('farmLeader', this.ruleForm.farmLeader)

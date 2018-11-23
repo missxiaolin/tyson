@@ -120,10 +120,15 @@ export default {
       })
     },
     async  queryFactory () {
-      let res = await queryFactory(this.ruleForm)
+      let data = {
+        id: this.ruleForm.id
+      }
+      let res = await queryFactory(data)
       if (res.data.code === ERR_OK) {
         this.ruleForm = res.data
+        return false
       }
+      Message(res.data.msg)
     },
     async edit () {
       let fileForm = new FormData()
