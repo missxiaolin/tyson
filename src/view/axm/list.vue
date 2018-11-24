@@ -157,7 +157,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   #top div{
     float: left;
     margin-right: 50px;
