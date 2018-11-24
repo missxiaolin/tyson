@@ -127,7 +127,7 @@ export default {
       fileForm.append('manageSysAuth', this.ruleForm.manageSysAuth)
       fileForm.append('xAxis', this.ruleForm.xAxis)
       fileForm.append('yAxis', this.ruleForm.yAxis)
-      fileForm.append('image', this.file)
+      fileForm.append('file', this.file)
 
       let res = await addFactory(fileForm)
       console.log(res)
