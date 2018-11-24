@@ -1,2 +1,0 @@
-webpackJsonp([15],{ClNS:function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var a=t("a6hh"),r=t("Mz/3"),l=r(null,a.a,!1,null,null,null);n.default=l.exports},a6hh:function(e,n,t){"use strict";var a=function(){var e=this,n=e.$createElement;return(e._self._c||n)("div",{staticClass:"dashboard-editor-container"},[e._v("\n        地区明细\n    ")])},r=[],l={render:a,staticRenderFns:r};n.a=l}});
-//# sourceMappingURL=15.11ffeba132dea38614f3.js.map

@@ -3,11 +3,11 @@
     <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left" label-width="0px"
       class="card-box login-form">
       <h3 class="title">登录</h3>
-      <el-form-item prop="username">
-        <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="username" />
+      <el-form-item prop="userName">
+        <el-input name="userName" type="text" v-model="loginForm.userName" autoComplete="on" placeholder="username" />
       </el-form-item>
-      <el-form-item prop="password">
-        <el-input name="password" type="password" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on"
+      <el-form-item prop="passWord">
+        <el-input name="passWord" type="password" @keyup.enter.native="handleLogin" v-model="loginForm.passWord" autoComplete="on"
           placeholder="password"></el-input>
       </el-form-item>
       <el-form-item>
@@ -45,14 +45,14 @@ export default {
     }
     return {
       loginForm: {
-        username: '',
-        password: ''
+        userName: '',
+        passWord: ''
       },
       loginRules: {
-        username: [
+        userName: [
           { required: true, trigger: 'blur', validator: validateUsername }
         ],
-        password: [{ required: true, trigger: 'blur', validator: validatePass }]
+        passWord: [{ required: true, trigger: 'blur', validator: validatePass }]
       },
       loading: false
     }
@@ -67,7 +67,7 @@ export default {
               // setToken(userData.data.token)
               this.$router.push({ path: '/' })
             } else {
-              Message(userData.message)
+              Message(userData.msg)
             }
           })
         } else {
