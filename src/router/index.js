@@ -25,6 +25,19 @@ export const asyncRouterMap = [
       }
     ]
   }, {
+    path: '/introduction',
+    component: layout,
+    redirect: '/introduction/index',
+    icon: 'icon-guanliyuan',
+    noDropdown: true,
+    children: [
+      {
+        path: 'index',
+        component: _import('introduction/index'),
+        name: '修改密码'
+      }
+    ]
+  }, {
     path: '/404',
     name: '404',
     component: _import('errorPage/404'),
@@ -117,6 +130,32 @@ export const asyncRouterMap = [
         path: 'add',
         component: _import('walmart/add'),
         name: '沃尔玛管理'
+      }
+    ]
+  }, {
+    path: '/census',
+    component: layout,
+    redirect: '/census/count',
+    name: '统计管理',
+    icon: 'icon-tongji',
+    noDropdown: false,
+    children: [
+      {
+        path: 'count',
+        component: _import('census/count'),
+        name: '数据汇总'
+      }, {
+        path: 'detail',
+        component: _import('census/detail'),
+        name: '访问明细'
+      }, {
+        path: 'axm',
+        component: _import('census/axm'),
+        name: '安心码明细'
+      }, {
+        path: 'index',
+        component: _import('census/index'),
+        name: '地区明细'
       }
     ]
   }
