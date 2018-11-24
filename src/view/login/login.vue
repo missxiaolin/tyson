@@ -21,10 +21,9 @@
 
 
 <script>
-import { isvalidUsername } from 'common/js/validate'
 import { login } from 'api/auth'
 import { ERR_OK } from '@/api/config'
-import { setToken } from 'common/js/cache'
+// import { setToken } from 'common/js/cache'
 import { Message } from 'element-ui'
 
 export default {
@@ -38,8 +37,8 @@ export default {
       }
     }
     const validatePass = (rule, value, callback) => {
-      if (value.length < 5) {
-        callback(new Error('密码不能小于5位'))
+      if (value.length < 2) {
+        callback(new Error('密码不能小于2位'))
       } else {
         callback()
       }
@@ -62,13 +61,11 @@ export default {
     handleLogin () {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          this.loading = true
           login(this.loginForm).then(response => {
             let userData = response.data
-            if (userData.code == ERR_OK) {
-              setToken(userData.data.token)
+            if (userData.code === ERR_OK) {
+              // setToken(userData.data.token)
               this.$router.push({ path: '/' })
-              this.loading = false
             } else {
               Message(userData.message)
             }

@@ -13,6 +13,10 @@
                 <el-input name="farmLeader" type="text" v-model="ruleForm.farmLeader" placeholder="农场负责人"></el-input>
             </el-form-item>
 
+            <el-form-item label="负责人图片：" prop="file">
+                <input type="file" ref="imgFile" id="imgFile" @change="changefileLeader">
+            </el-form-item>
+
             <el-form-item label="农场地址：" prop="farmAddress">
                 <el-input name="farmAddress" type="text" v-model="ruleForm.farmAddress" placeholder="农场地址"></el-input>
             </el-form-item>
@@ -76,8 +80,8 @@ export default {
         yAxis: ''
 
       },
-      file: ''
-
+      file: '',
+      leaderFile: ''
     }
   },
   methods: {
@@ -94,7 +98,8 @@ export default {
     },
     async add () {
       let fileForm = new FormData()
-      fileForm.append('file', this.file)
+      fileForm.append('fileFarm', this.file)
+      fileForm.append('fileLeader', this.leaderFile)
       fileForm.append('farmCode', this.ruleForm.farmCode)
       fileForm.append('farmName', this.ruleForm.farmName)
       fileForm.append('farmLeader', this.ruleForm.farmLeader)
@@ -113,6 +118,9 @@ export default {
     },
     changeHandle (e) {
       this.file = e.target.files[0]
+    },
+    changefileLeader (e) {
+      this.leaderFile = e.target.files[0]
     },
     // 重置
     resetForm (formName) {

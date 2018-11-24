@@ -1,8 +1,8 @@
 import axios from 'axios'
-import { Message } from 'element-ui'
+import { Message, MessageBox } from 'element-ui'
 // import { getToken } from 'common/js/cache'
-// import * as error from 'api/config'
-// import routes from '@/router'
+import * as error from 'api/config'
+import routes from '@/router'
 import Qs from 'qs'
 
 // 创建axios实例
@@ -17,6 +17,7 @@ service.interceptors.request.use(config => {
     config.data = Qs.stringify(config.data)
   }
   config.headers['Content-Type'] = 'application/json;charset=UTF-8'
+
   // config.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8'
   // config.headers['Content-Type'] = 'multipart/form-data'
   return config
@@ -29,6 +30,16 @@ service.interceptors.request.use(config => {
 // respone拦截器
 service.interceptors.response.use(
   response => {
+    let res = response.data
+    if (res.code === error.ERROR_TOKEN_EXPIRE) {
+      MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '提示', { // token过期情况
+        confirmButtonText: '重新登录',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        routes.push({name: 'login'})
+      })
+    }
     return Promise.resolve(response)
   },
   error => {
