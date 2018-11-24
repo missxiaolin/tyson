@@ -1,5 +1,5 @@
 <template>
-	<div class="dashboard-editor-container">
+	<div class="app-container">
     <div style="width:200px;">
       <el-upload
         class="upload-demo"

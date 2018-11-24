@@ -1,2 +1,0 @@
-webpackJsonp([14],{CbIK:function(e,t,n){"use strict";var r=function(){var e=this,t=e.$createElement;return(e._self._c||t)("div",{staticClass:"dashboard-editor-container"},[e._v("\n    泰森后台\n  ")])},a=[],s={render:r,staticRenderFns:a};t.a=s},tLrx:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=n("CbIK"),a=n("Mz/3"),s=a(null,r.a,!1,null,null,null);t.default=s.exports}});
-//# sourceMappingURL=14.9216bf8fd911106a40c4.js.map
