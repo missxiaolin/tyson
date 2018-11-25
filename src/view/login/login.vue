@@ -23,7 +23,7 @@
 <script>
 import { login } from 'api/auth'
 import { ERR_OK } from '@/api/config'
-// import { setToken } from 'common/js/cache'
+import { setToken } from 'common/js/cache'
 import { Message } from 'element-ui'
 
 export default {
@@ -64,7 +64,7 @@ export default {
           login(this.loginForm).then(response => {
             let userData = response.data
             if (userData.code === ERR_OK) {
-              // setToken(userData.data.token)
+              setToken(userData.token)
               this.$router.push({ path: '/' })
             } else {
               Message(userData.msg)

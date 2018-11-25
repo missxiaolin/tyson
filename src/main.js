@@ -2,33 +2,25 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-
-// 懒加载
-import VueLazyload from 'vue-lazyload'
 import router from './router'
 
 // 过滤器
-import * as filters from './filters' // global filters
-
-// register global utility filters.
-Object.keys(filters).forEach(key => {
-  Vue.filter(key, filters[key])
-})
+import * as filters from './filters'
 
 // vuex
 import store from './store'
 
 // 权限
-import './permission'
+import './permission' // global filters
+
+// register global utility filters.  过滤器
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
 
 Vue.use(ElementUI)
-
-Vue.use(VueLazyload, {
-  loading: require('common/image/default.png')
-})
 
 Vue.config.productionTip = false
 

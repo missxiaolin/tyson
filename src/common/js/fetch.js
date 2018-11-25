@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
-// import { getToken } from 'common/js/cache'
+import { getToken } from 'common/js/cache'
 import * as error from 'api/config'
 import routes from '@/router'
 import Qs from 'qs'
@@ -17,6 +17,11 @@ service.interceptors.request.use(config => {
     config.data = Qs.stringify(config.data)
   }
   config.headers['Content-Type'] = 'application/json;charset=UTF-8'
+
+  let token = getToken()
+  if (token) {
+    config.headers['TOKEN'] = token
+  }
 
   // config.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8'
   // config.headers['Content-Type'] = 'multipart/form-data'
