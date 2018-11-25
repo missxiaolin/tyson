@@ -20,7 +20,14 @@
         <el-input name="manageSysAuth" type="text" v-model="ruleForm.manageSysAuth" placeholder="管理体系认证"></el-input>
       </el-form-item>
       <el-form-item label="图片文件：" prop="file">
-        <input type="file" ref="imgFile" id="imgFile" @change="changeHandle">
+        <el-row>
+          <el-col :span="6">
+            <input type="file" ref="imgFile" id="imgFile" @change="changeHandle">
+          </el-col>
+          <el-col :span="18">
+            <img v-if="image" :src="image" alt="" style="max-width:200px">
+          </el-col>
+        </el-row>
       </el-form-item>
       <el-form-item label="坐标：">
         <el-col :span="6">
@@ -95,7 +102,8 @@ export default {
         yAxis: '',
         image: ''
       },
-      file: ''
+      file: '',
+      image: ''
     }
   },
   created () {
@@ -126,6 +134,8 @@ export default {
       let res = await queryFactory(data)
       if (res.data.code === ERR_OK) {
         this.ruleForm = res.data
+        console.log(res.data.image)
+        this.image = res.data.image
         return false
       }
       Message(res.data.msg)
