@@ -10,23 +10,28 @@
 
 
 <script>
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 import Navbar from './Navbar'
 import Sidebar from './Sidebar'
 import AppMain from './AppMain'
 
 export default {
   name: 'layout',
+  data () {
+    return {
+      opened: 0
+    }
+  },
   components: {
     Navbar,
     Sidebar,
     AppMain
   },
   computed: {
-    ...mapGetters(['opened']),
-    isCollapse () {
-      return this.opened
-    }
+    // ...mapGetters(['opened']),
+    // isCollapse () {
+      // return this.opened
+    // }
   }
 }
 </script>
