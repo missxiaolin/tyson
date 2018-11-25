@@ -17,11 +17,6 @@ import AppMain from './AppMain'
 
 export default {
   name: 'layout',
-  data () {
-    return {
-      opened: 0
-    }
-  },
   components: {
     Navbar,
     Sidebar,
