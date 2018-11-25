@@ -47,7 +47,7 @@ export default {
       let data = {}
       let res = await userLogout(data)
       if (res.data.code === ERR_OK) {
-        this.$router.push({ path: 'login' })
+        this.$router.push({ path: '/login' })
         return false
       }
       Message(res.data.msg)

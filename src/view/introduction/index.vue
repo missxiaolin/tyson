@@ -67,7 +67,7 @@ export default {
       }
     }
   },
-  computed: {
+  created () {
   },
   methods: {
     // 修改
@@ -85,7 +85,7 @@ export default {
     async editUserPwd () {
       let res = await editPwd(this.ruleForm)
       if (res.data.code === ERR_OK) {
-        this.$router.push({ path: 'login' })
+        this.$router.push({ path: '/login' })
         return false
       }
       Message(res.data.msg)
