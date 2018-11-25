@@ -22,6 +22,9 @@
 </template>
 
 <script>
+import { userLogout } from 'api/auth'
+import { ERR_OK } from '@/api/config'
+import { Message } from 'element-ui'
 import { mapGetters } from 'vuex'
 import Hamburger from 'base/Hamburger'
 import Levelbar from './Levelbar'
@@ -40,7 +43,15 @@ export default {
       this.$store.dispatch('ToggleSideBar')
     },
     // 退出登录操作
-    logout () {}
+    async logout () {
+      let data = {}
+      let res = await userLogout(data)
+      if (res.data.code === ERR_OK) {
+        this.$router.push({ path: 'login' })
+        return false
+      }
+      Message(res.data.msg)
+    }
   },
   components: {
     Hamburger,
