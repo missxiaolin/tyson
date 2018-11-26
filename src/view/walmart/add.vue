@@ -31,6 +31,7 @@ export default {
     }
   },
   created () {
+    console.log(getToken())
     this.header = {
       TOKEN: getToken()
     }
@@ -48,11 +49,12 @@ export default {
       console.log(file)
     },
     addSuccess (response, file, fileList) {
-      if (response.code !== '0000') {
+      console.log(response)
+      if (response.code == '0000') {
         Message('上传成功')
         return false
       }
-      if (response.code !== '0001') {
+      if (response.code == '0001') {
         MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '提示', { // token过期情况
           confirmButtonText: '重新登录',
           cancelButtonText: '取消',
