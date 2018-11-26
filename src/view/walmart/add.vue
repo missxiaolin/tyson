@@ -5,6 +5,7 @@
         class="upload-demo"
         ref="upload"
         action="http://39.105.203.57:9999/manage/securityCode/uploadInspection"
+        :headers="header"
         :on-success="addSuccess"
         :on-preview="handlePreview"
         :on-remove="handleRemove"
@@ -20,14 +21,19 @@
 
 <script>
 import { Message, MessageBox } from 'element-ui'
+import { getToken } from 'common/js/cache'
 
 export default {
   data () {
     return {
-      fileList: []
+      fileList: [],
+      header: {}
     }
   },
   created () {
+    this.header = {
+      TOKEN: getToken()
+    }
   },
   methods: {
     submitUpload () {
