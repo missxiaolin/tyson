@@ -4,7 +4,7 @@
       class="card-box login-form">
       <h3 class="title">登录</h3>
       <el-form-item prop="userName">
-        <el-input name="userName" type="text" v-model="loginForm.userName" autoComplete="on" placeholder="username" />
+        <el-input name="userName" type="text" v-model="loginForm.userName" autoComplete="on" placeholder="account" />
       </el-form-item>
       <el-form-item prop="passWord">
         <el-input name="passWord" type="password" @keyup.enter.native="handleLogin" v-model="loginForm.passWord" autoComplete="on"
