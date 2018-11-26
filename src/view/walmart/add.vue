@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { Message } from 'element-ui'
+import { Message, MessageBox } from 'element-ui'
 
 export default {
   data () {
@@ -41,8 +41,22 @@ export default {
       console.log(2222)
       console.log(file)
     },
-    addSuccess () {
-      Message('上传成功')
+    addSuccess (response, file, fileList) {
+      if (response.code !== '0000') {
+        Message('上传成功')
+        return false
+      }
+      if (response.code !== '0001') {
+        MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '提示', { // token过期情况
+          confirmButtonText: '重新登录',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$routes.push({path: '/login'})
+        })
+        return false
+      }
+      Message(response.msg)
     }
   }
 }
