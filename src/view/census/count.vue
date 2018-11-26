@@ -15,7 +15,7 @@
             </el-table-column>
             <el-table-column prop="visitWalmartCount" label="安心码访问总数（沃尔玛）">
             </el-table-column>
-            <el-table-column prop="queryWalmartCount" label="安心码访问总数（沃尔玛）">
+            <el-table-column prop="queryWalmartCount" label="安心码查询总数（沃尔玛）">
             </el-table-column>
             <el-table-column prop="totalCount" label="访问总数">
             </el-table-column>
