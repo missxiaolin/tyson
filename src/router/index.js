@@ -152,10 +152,6 @@ export const asyncRouterMap = [
         path: 'axm',
         component: _import('census/axm'),
         name: '安心码明细'
-      }, {
-        path: 'index',
-        component: _import('census/index'),
-        name: '地区明细'
       }
     ]
   }

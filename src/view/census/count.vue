@@ -6,53 +6,20 @@
     <div class="ibox-content">
       <el-row>
         <el-col :span="24">
-          <table cellpadding="0" cellspacing="0" class="table table-hover">
-            <thead>
-              <tr>
-                <th width="10%"></th>
-                <th width="20%">安心码<br>访问总数</th>
-                <th width="20%">安心码<br>访问总数</th>
-                <th width="10%"></th>
-                <th width="20%">总访问量</th>
-                <th width="20%">总IP</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>合计</th>
-                <td>100</td>
-                <td>200</td>
-                <th>合计</th>
-                <td>100</td>
-                <td>200</td>
-              </tr>
-              <tr>
-                <th>-</th>
-                <td>-</td>
-                <td>-</td>
-                <th>微信访问</th>
-                <td>100</td>
-                <td>100</td>
-              </tr>
-              <tr>
-                <th>PC版网站</th>
-                <td>100</td>
-                <td>200</td>
-                <th>PC版网站</th>
-                <td>100</td>
-                <td>200</td>
-              </tr>
-            </tbody>
-          </table>
-        </el-col>
-      </el-row>
-
-      <el-row>
-        <el-col :span="24">
-          <el-table :data="tableData" stripe style="width: 100%;margin-bottom:50px;">
-            <el-table-column prop="a" label="安心码跳转率">
+          <el-table :data="list" stripe style="width: 100%;margin-bottom:50px;">
+            <el-table-column prop="device" label="">
             </el-table-column>
-            <el-table-column prop="b" label="安心码查询率">
+            <el-table-column prop="visitTysonCount" label="安心码访问总数（泰森）">
+            </el-table-column>
+            <el-table-column prop="queryTysonCount" label="安心码查询总数（泰森）">
+            </el-table-column>
+            <el-table-column prop="visitWalmartCount" label="安心访问总数（沃尔玛）">
+            </el-table-column>
+            <el-table-column prop="queryWalmartCount" label="安心访问总数（沃尔玛）">
+            </el-table-column>
+            <el-table-column prop="totalCount" label="访问总数">
+            </el-table-column>
+            <el-table-column prop="ipCount" label="ip总数">
             </el-table-column>
           </el-table>
         </el-col>
@@ -60,28 +27,12 @@
 
       <el-row>
         <el-col :span="24">
-          <table cellpadding="0" cellspacing="0" class="table table-hover">
-            <thead>
-              <tr>
-                <th>页面</th>
-                <th>跳转率</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>关于泰森</th>
-                <td>200</td>
-              </tr>
-              <tr>
-                <th>泰森产品</th>
-                <td>100</td>
-              </tr>
-              <tr>
-                <th>流程图</th>
-                <td>100</td>
-              </tr>
-            </tbody>
-          </table>
+          <el-table :data="tableData" stripe style="width: 100%;margin-bottom:50px;">
+            <el-table-column prop="queryRate" label="安心码跳转率">
+            </el-table-column>
+            <el-table-column prop="refferRate" label="安心码查询率">
+            </el-table-column>
+          </el-table>
         </el-col>
       </el-row>
 
@@ -91,11 +42,16 @@
 
 
 <script>
+import { getCodeStatsByDate } from '@/api/census'
+import { ERR_OK } from '@/api/config'
+import { Message } from 'element-ui'
+
 export default {
   data () {
     return {
+      list: [],
       dateTime: [],
-      tableData: [{ a: '71.87%', b: '4.63%' }],
+      tableData: [{ queryRate: '', refferRate: '' }],
       searchForm: {
         create_start: '',
         create_end: '',
@@ -103,7 +59,28 @@ export default {
       }
     }
   },
+  mounted () {
+    this.codeStatsByDate()
+  },
   methods: {
+    async codeStatsByDate () {
+      let data = {
+        startDate: '',
+        endDate: ''
+      }
+      let res = await getCodeStatsByDate(data)
+      if (res.data.code === ERR_OK) {
+        let result = res.data
+        let queryRate = result.queryRate * 100
+        let refferRate = result.refferRate * 100
+        this.tableData[0].queryRate = `${queryRate.toFixed(2)}%`
+        this.tableData[0].refferRate = `${refferRate.toFixed(2)}%`
+        this.list = result.list
+        console.log(this.list)
+        return false
+      }
+      Message(res.data.msg)
+    },
     // 重置
     resetForm (formName) {
       this.dateTime = []
@@ -128,38 +105,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-table {
-  width: 100%;
-  margin-bottom: 50px;
-}
 
-.table > thead > tr > th,
-.table > tbody > tr > th,
-.table > thead > tr > td,
-.table > tbody > tr > td {
-  padding: 12px 10px;
-  min-width: 0;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  text-overflow: ellipsis;
-  vertical-align: middle;
-  position: relative;
-  text-align: left;
-  border-bottom: 1px solid #ebeef5;
-  color: #909399;
-  font-size: 14px;
-}
-
-th {
-  color: #333 !important;
-}
-
-.table-hover > tbody > tr:hover {
-  background-color: #f5f7fa;
-}
-
-td:nth-child(3),
-th:nth-child(3) {
-  border-right: 1px solid #ebeef5;
-}
 </style>
