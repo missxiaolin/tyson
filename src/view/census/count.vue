@@ -76,7 +76,6 @@ export default {
         this.tableData[0].queryRate = `${queryRate.toFixed(2)}%`
         this.tableData[0].refferRate = `${refferRate.toFixed(2)}%`
         this.list = result.list
-        console.log(this.list)
         return false
       }
       Message(res.data.msg)
