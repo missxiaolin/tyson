@@ -1,10 +1,21 @@
 <template>
 	<div class="app-container">
+    <div style="margin-bottom: 20px">
+      <el-date-picker
+      v-model="formData.date"
+      @change="dateChangebirthday"
+      format="yyyy-MM-dd"
+      value-format="yyyy-MM-dd"
+      type="date"
+      placeholder="选择日期">
+    </el-date-picker>
+    </div>
     <div style="width:200px;">
       <el-upload
         class="upload-demo"
         ref="upload"
         action="http://39.105.203.57:9999/manage/securityCode/uploadInspection"
+        :data="formData"
         :headers="header"
         :on-success="addSuccess"
         :on-preview="handlePreview"
@@ -27,7 +38,11 @@ export default {
   data () {
     return {
       fileList: [],
-      header: {}
+      header: {},
+      formData: {
+        date: ''
+      }
+
     }
   },
   created () {
@@ -37,6 +52,12 @@ export default {
     }
   },
   methods: {
+    // 时间格式
+    dateChangebirthday (val) {
+      console.log(val)
+      // this.searchForm.create_start = val[0]
+      // this.searchForm.create_end = val[1]
+    },
     submitUpload () {
       this.$refs.upload.submit()
     },
@@ -69,3 +90,9 @@ export default {
   }
 }
 </script>
+
+<style lang="">
+  body {
+    
+  }
+</style>
