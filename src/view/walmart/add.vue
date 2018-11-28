@@ -30,7 +30,7 @@
     <div id="brm-images">
       <div class="img" v-for="(item,index) in images" :key="index">
         <i @click="delImg(item)" class="el-icon-delete"></i>
-        <img :src="item" alt="">
+        <img v-if="item" :src="item" alt="">
       </div>
     </div>
   </div>
