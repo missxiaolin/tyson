@@ -30,7 +30,7 @@
     <div id="brm-images">
       <div class="img" v-for="(item,index) in images" :key="index">
         <i @click="delImg(item)" class="el-icon-delete"></i>
-        <img v-if="item" :src="item" alt="">
+        <img v-if="item != ''" :src="item" alt="">
       </div>
     </div>
   </div>
@@ -61,16 +61,24 @@ export default {
     this.getInspectionsByDate()
   },
   methods: {
-    async delImg (item) {
-      let data = {
-        path: item
-      }
-      let res = await deleteInspection(data)
-      if (res.data.code === ERR_OK) {
-        this.getInspectionsByDate()
-        return false
-      }
-      Message(res.data.msg)
+    delImg (item) {
+      this.$confirm('此操作将永久删除图片信息, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        let data = {
+          path: item
+        }
+        deleteInspection(data).then(response => {
+          let axmData = response.data
+          if (axmData.code === ERR_OK) {
+            this.getInspectionsByDate()
+          } else {
+            Message(axmData.msg)
+          }
+        })
+      })
     },
     async getInspectionsByDate () {
       let res = await queryInspectionsByDate(this.formData)

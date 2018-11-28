@@ -109,9 +109,17 @@ export default {
       console.log(fileForm)
       let res = await addFarm(fileForm)
       if (res.data.code === ERR_OK) {
-        this.$router.push({
-          path: '/axm/farm/list'
+        this.$alert('保存成功', {
+          confirmButtonText: '确定',
+          callback: action => {
+            if (action === 'confirm') {
+              this.$router.push({
+                path: '/axm/farm/list'
+              })
+            }
+          }
         })
+
         return false
       }
       Message(res.data.msg)

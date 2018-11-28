@@ -130,9 +130,17 @@ export default {
       let res = await editFarm(fileForm)
       console.log(res)
       if (res.data.code === ERR_OK) {
-        this.$router.push({
-          path: '/axm/farm/list'
+        this.$alert('修改成功', {
+          confirmButtonText: '确定',
+          callback: action => {
+            if (action === 'confirm') {
+              this.$router.push({
+                path: '/axm/farm/list'
+              })
+            }
+          }
         })
+
         return false
       }
       Message(res.data.msg)

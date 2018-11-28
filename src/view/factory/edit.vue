@@ -157,9 +157,17 @@ export default {
       let res = await modifyFactory(fileForm)
       console.log(res)
       if (res.data.code === ERR_OK) {
-        this.$router.push({
-          path: '/axm/factory/list'
+        this.$alert('修改成功', {
+          confirmButtonText: '确定',
+          callback: action => {
+            if (action === 'confirm') {
+              this.$router.push({
+                path: '/axm/factory/list'
+              })
+            }
+          }
         })
+
         return false
       }
       Message(res.data.msg)

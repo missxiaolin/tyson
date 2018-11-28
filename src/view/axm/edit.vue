@@ -58,9 +58,17 @@ export default {
       let res = await editAxm(this.ruleForm)
       console.log(res)
       if (res.data.code === ERR_OK) {
-        this.$router.push({
-          path: '/axm/list'
+        this.$alert('修改成功', {
+          confirmButtonText: '确定',
+          callback: action => {
+            if (action === 'confirm') {
+              this.$router.push({
+                path: '/axm/list'
+              })
+            }
+          }
         })
+
         return false
       }
       Message(res.data.msg)
