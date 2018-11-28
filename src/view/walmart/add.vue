@@ -10,7 +10,7 @@
       placeholder="选择日期">
     </el-date-picker>
     </div>
-    <div style="width:200px;">
+    <div>
       <el-upload
         class="upload-demo"
         ref="upload"
@@ -27,10 +27,18 @@
         <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过10M</div>
       </el-upload>
     </div>
+    <div id="brm-images">
+      <div class="img" v-for="(item,index) in images" :key="index">
+        <i @click="delImg(item)" class="el-icon-delete"></i>
+        <img :src="item" alt="">
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { queryInspectionsByDate, deleteInspection } from '@/api/walmart'
+import { ERR_OK } from '@/api/config'
 import { Message, MessageBox } from 'element-ui'
 import { getToken } from 'common/js/cache'
 
@@ -41,38 +49,56 @@ export default {
       header: {},
       formData: {
         date: ''
-      }
+      },
+      images: []
 
     }
   },
   created () {
-    console.log(getToken())
     this.header = {
       TOKEN: getToken()
     }
+    this.getInspectionsByDate()
   },
   methods: {
+    async delImg (item) {
+      let data = {
+        path: item
+      }
+      let res = await deleteInspection(data)
+      if (res.data.code === ERR_OK) {
+        this.getInspectionsByDate()
+        return false
+      }
+      Message(res.data.msg)
+    },
+    async getInspectionsByDate () {
+      let res = await queryInspectionsByDate(this.formData)
+      if (res.data.code === ERR_OK) {
+        let response = res.data
+        this.images = response.images
+        console.log(this.images)
+        return false
+      }
+      Message(res.data.msg)
+    },
     // 时间格式
     dateChangebirthday (val) {
-      console.log(val)
-      // this.searchForm.create_start = val[0]
-      // this.searchForm.create_end = val[1]
+      this.getInspectionsByDate()
     },
     submitUpload () {
       this.$refs.upload.submit()
     },
     handleRemove (file, fileList) {
-      console.log(11111)
       console.log(file, fileList)
     },
     handlePreview (file) {
-      console.log(2222)
       console.log(file)
     },
     addSuccess (response, file, fileList) {
-      console.log(response)
       if (response.code == '0000') {
         Message('上传成功')
+        this.getInspectionsByDate()
         return false
       }
       if (response.code == '0001') {
@@ -91,8 +117,26 @@ export default {
 }
 </script>
 
-<style lang="">
-  body {
-    
+<style lang="scss">
+  #brm-images {
+    margin-top: 20px;
+    .img{
+      float: left;
+      min-width: 200px;
+      min-height: 150px;
+      margin-right: 20px;
+      border: solid 1px #cccccc;
+      position: relative;
+      img{
+        width: 200px;
+        min-height: 150px;
+      }
+      .el-icon-delete{
+        position: absolute;
+        right: -10px;
+        top: -10px;
+      }
+    }
   }
+  
 </style>
