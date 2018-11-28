@@ -28,9 +28,9 @@
       </el-upload>
     </div>
     <div id="brm-images">
-      <div class="img" v-for="(item,index) in images" :key="index">
+      <div class="img" v-if="item != ''" v-for="(item,index) in images" :key="index">
         <i @click="delImg(item)" class="el-icon-delete"></i>
-        <img v-if="item != ''" :src="item" alt="">
+        <img :src="item" alt="">
       </div>
     </div>
   </div>
