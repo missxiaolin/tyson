@@ -149,7 +149,7 @@ export default {
       this.file = e.target.files[0]
     },
     changefileLeader (e) {
-      this.file = e.target.files[0]
+      this.leaderFile = e.target.files[0]
     },
     // 重置
     resetForm (formName) {
