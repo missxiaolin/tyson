@@ -64,7 +64,7 @@
 <script>
 import { axmList, delAxm } from '@/api/axm'
 import { ERR_OK } from '@/api/config'
-import { Message } from 'element-ui'
+import { Message, MessageBox } from 'element-ui'
 
 export default {
   data () {
@@ -143,10 +143,22 @@ export default {
       console.log(file)
     },
     addSuccess (response, file, fileList) {
+      if (response.code === '0001') {
+        MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '提示', { // token过期情况
+          confirmButtonText: '重新登录',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$router.push({ path: '/login' })
+        })
+        return false
+      }
+
       if (response.code !== ERR_OK) {
         Message(response.msg)
         return false
       }
+
       this.page = 1
       this.getAxm()
     },
