@@ -12,6 +12,7 @@
           <el-upload
             class="upload-demo"
             action="http://39.105.203.57:9999/manage/securityCode/uploadSecurityCodes"
+            :headers="header"
             :on-error="addError"
             :on-success="addSuccess"
             :on-preview="handlePreview"
@@ -62,6 +63,7 @@
 </template>
 
 <script>
+import { getToken } from 'common/js/cache'
 import { axmList, delAxm } from '@/api/axm'
 import { ERR_OK } from '@/api/config'
 import { Message, MessageBox } from 'element-ui'
@@ -69,6 +71,7 @@ import { Message, MessageBox } from 'element-ui'
 export default {
   data () {
     return {
+      header: {},
       list: [],
       listLoading: true,
       page: 1,
@@ -77,6 +80,9 @@ export default {
     }
   },
   created () {
+    this.header = {
+      TOKEN: getToken()
+    }
     this.getAxm()
   },
   methods: {
