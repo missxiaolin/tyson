@@ -53,7 +53,7 @@
           background
           layout="prev, pager, next"
           @current-change="handleCurrentChange"
-          :current-page="listPage"
+          :current-page="page"
           :page-size="pagesize"
           :total="total">
           </el-pagination>
@@ -75,7 +75,6 @@ export default {
       list: [],
       listLoading: true,
       page: 1,
-      listPage: 1,
       total: 0, // table数据总条数
       pagesize: 20
     }
@@ -84,8 +83,6 @@ export default {
     this.header = {
       TOKEN: getToken()
     }
-    this.page = parseInt(this.$route.query.page) || 1
-    // console.log(this.page)
     this.getAxm()
   },
   methods: {
@@ -101,7 +98,6 @@ export default {
           this.list = axmData.list
           this.listLoading = false
           this.total = parseInt(axmData.total)
-          this.listPage = parseInt(this.page)
           document.body.scrollTop = 0
           // 兼容
           document.documentElement.scrollTop = 0
@@ -141,13 +137,7 @@ export default {
     },
     handleCurrentChange (currentPage) {
       this.page = currentPage
-      this.$router.push({
-        path: '/axm/list',
-        query: {
-          page: this.page
-        }
-      })
-      // this.getAxm()
+      this.getAxm()
     },
     submitUpload () {
       this.$refs.upload.submit()
