@@ -14,7 +14,7 @@
       <el-upload
         class="upload-demo"
         ref="upload"
-        action="http://39.105.203.57:9999/manage/securityCode/uploadInspection"
+        action="http://www.tyson.com.cn:9999/manage/securityCode/uploadInspection"
         :data="formData"
         :headers="header"
         :on-success="addSuccess"

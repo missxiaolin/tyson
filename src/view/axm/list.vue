@@ -11,7 +11,7 @@
         <div>
           <el-upload
             class="upload-demo"
-            action="http://39.105.203.57:9999/manage/securityCode/uploadSecurityCodes"
+            action="http://www.tyson.com.cn:9999/manage/securityCode/uploadSecurityCodes"
             :headers="header"
             :on-error="addError"
             :on-success="addSuccess"
