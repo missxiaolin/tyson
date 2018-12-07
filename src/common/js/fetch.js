@@ -16,7 +16,7 @@ service.interceptors.request.use(config => {
   if (config.method === 'post' && typeof config.data === 'string') {
     config.data = Qs.stringify(config.data)
   }
-  config.headers['Content-Type'] = 'application/json;charset=UTF-8'
+  config.headers['contentType'] = 'application/json;charset=UTF-8'
 
   let token = getToken()
   if (token) {
