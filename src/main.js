@@ -6,6 +6,9 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import router from './router'
 
+import 'babel-polyfill'
+import 'es6-promise/auto'
+
 // 过滤器
 import * as filters from './filters'
 
