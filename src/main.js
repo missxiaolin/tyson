@@ -7,7 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import router from './router'
 
 import 'babel-polyfill'
-import 'es6-promise/auto'
+// import 'es6-promise/auto'
 import promise from 'es6-promise'
 
 // 过滤器
