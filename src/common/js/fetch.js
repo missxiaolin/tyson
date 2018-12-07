@@ -15,6 +15,8 @@ const service = axios.create({
   }
 })
 
+service.defaults.headers.push['Content-Type'] = 'application/json;charset=UTF-8'
+
 // request拦截器
 service.interceptors.request.use(config => {
   if (config.method === 'post' && typeof config.data === 'string') {
