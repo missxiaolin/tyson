@@ -8,7 +8,11 @@ import Qs from 'qs'
 // 创建axios实例
 const service = axios.create({
   baseURL: process.env.BASE_API, // api的base_url
-  timeout: 5000                  // 请求超时时间
+  timeout: 5000,                  // 请求超时时间
+  headers: {
+    'contentType': 'application/json;charset=UTF-8',
+    'Content-Type': 'application/json;charset=UTF-8'
+  }
 })
 
 // request拦截器
