@@ -17,6 +17,10 @@
             </el-table-column>
             <el-table-column prop="queryWalmartCount" label="安心码查询总数（沃尔玛）">
             </el-table-column>
+            <el-table-column prop="visitfreshCount" label="安心码访问总数（原生鲜）">
+            </el-table-column>
+            <el-table-column prop="queryfreshCount" label="安心码查询总数（原生鲜）">
+            </el-table-column>
             <el-table-column prop="totalCount" label="访问总数">
             </el-table-column>
             <el-table-column prop="ipCount" label="ip总数">
