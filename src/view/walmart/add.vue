@@ -14,7 +14,7 @@
       <el-upload
         class="upload-demo"
         ref="upload"
-        action="http://www.tyson.com.cn:9999/manage/securityCode/uploadInspection"
+        :action="imgUrl"
         :data="formData"
         :headers="header"
         :on-success="addSuccess"
@@ -50,11 +50,12 @@ export default {
       formData: {
         date: ''
       },
-      images: []
-
+      images: [],
+      imgUrl: ''
     }
   },
   created () {
+    this.imgUrl = `${process.env.BASE_API}/manage/securityCode/uploadInspection`
     this.header = {
       TOKEN: getToken()
     }

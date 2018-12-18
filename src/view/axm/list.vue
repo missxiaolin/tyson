@@ -11,7 +11,7 @@
         <div>
           <el-upload
             class="upload-demo"
-            action="http://www.tyson.com.cn:9999/manage/securityCode/uploadSecurityCodes"
+            :action="imgUrl"
             :headers="header"
             :on-error="addError"
             :on-success="addSuccess"
@@ -71,6 +71,7 @@ import { Message, MessageBox } from 'element-ui'
 export default {
   data () {
     return {
+      imgUrl: '',
       header: {},
       list: [],
       listLoading: true,
@@ -80,6 +81,7 @@ export default {
     }
   },
   created () {
+    this.imgUrl = `${process.env.BASE_API}/manage/securityCode/uploadSecurityCodes`
     this.header = {
       TOKEN: getToken()
     }
